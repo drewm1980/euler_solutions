@@ -1,6 +1,6 @@
 .gitignore
 !ghc = |> ghc %f -o %B.exe |> %B.exe %B.hi %B.o
-!run = |> %f > %o |> %B_solution.txt
+!run = |> %f | tee %o |> %B_solution.txt
 
 : foreach *.hs |> !ghc |>
 : foreach *.exe |> !run |>
