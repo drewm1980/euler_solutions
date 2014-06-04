@@ -1,5 +1,5 @@
 .gitignore
-!ghc = |> ghc %f -o %o |> %B.exe
+!ghc = |> ghc %f -o %B.exe |> %B.exe %B.hi %B.o
 !run = |> %f > %o |> %B_solution.txt
 
 : foreach *.hs |> !ghc |>
