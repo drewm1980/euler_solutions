@@ -12,7 +12,7 @@ GHC_FLAGS+=-O2
 : Problem_002.hs |> !ghcc |> 
 : Problem_003.hs | Factorization.hi |> !ghcc |> 
 : Problem_004.hs | Factorization.hi |> !ghcc |> 
-: Problem_005.hs |> !ghcc |> 
+: Problem_005.hs | Factorization.hi |> !ghcc |> 
 : Problem_006.hs |> !ghcc |> 
 : Problem_007.hs |> !ghcc |> 
 
@@ -20,7 +20,7 @@ GHC_FLAGS+=-O2
 : Problem_002.o | Problem_002.hi |> !ghld |>
 : Problem_003.o Factorization.o | Problem_003.hi |> !ghld |> Problem_003.exe
 : Problem_004.o Factorization.o | Problem_004.hi |> !ghld |> Problem_004.exe
-: Problem_005.o | Problem_005.hi |> !ghld |>
+: Problem_005.o Factorization.o | Problem_005.hi |> !ghld |> Problem_005.exe
 : Problem_006.o | Problem_006.hi |> !ghld |>
 : Problem_007.o | Problem_007.hi |> !ghld |>
 
