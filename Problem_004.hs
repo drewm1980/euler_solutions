@@ -43,6 +43,6 @@ divisible' k | a == 1 = False -- number is prime
 
 main :: IO () 
 main = do
-    let result = heat $ filter divisible' candidate_palindromes
+    let result = head $ filter divisible' candidate_palindromes
     putStrLn $ "The solution is mayyybe" ++ show result
 

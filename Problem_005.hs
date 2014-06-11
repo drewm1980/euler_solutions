@@ -3,7 +3,7 @@
 
 needs_divisible_by = [20,19..1]
 
-product_of_low_primes = 
+{-product_of_low_primes = -}
 
 main :: IO () 
 main = do

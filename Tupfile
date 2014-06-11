@@ -1,7 +1,14 @@
 .gitignore
+
+# Note, it makes sense to use tup instead of ghc compiling a big monolithic program,
+# since we don't want to be constanly re-running all problems during development
+
 GHC_FLAGS+=-O2
-!ghc = |> ghc $(GHC_FLAGS) %f -o %B.exe |> %B.exe %B.hi %B.o
+!ghcc = |> ghc $(GHC_FLAGS) %f -c |> %B.hi %B.o
+!ghld = |> ghc $(GHC_FLAGS) %f -o %B.exe |> %B.exe
 !run = |> %f | tee %o |> %B_solution.txt
 
-: foreach *.hs |> !ghc |>
-: foreach *.exe |> !run |>
+: foreach *.hs |> !ghcc |>
+: foreach Problem_*.exe |> !run |>
+
+: Problem_001.o | Problem_001.hi |> !ghld |>
