@@ -1,6 +1,7 @@
 --Find the largest palindrome made from the product of two 3-digit numbers.
 
 import Data.List
+import Factorization (split)
 
 k :: Int
 k = 600851475143

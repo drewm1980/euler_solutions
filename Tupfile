@@ -1,14 +1,28 @@
 .gitignore
 
-# Note, it makes sense to use tup instead of ghc compiling a big monolithic program,
-# since we don't want to be constanly re-running all problems during development
-
 GHC_FLAGS+=-O2
 !ghcc = |> ghc $(GHC_FLAGS) %f -c |> %B.hi %B.o
-!ghld = |> ghc $(GHC_FLAGS) %f -o %B.exe |> %B.exe
+!ghld = |> ghc $(GHC_FLAGS) %f -o %o |> %B.exe
 !run = |> %f | tee %o |> %B_solution.txt
 
-: foreach *.hs |> !ghcc |>
-: foreach Problem_*.exe |> !run |>
+: Factorization.hs |> !ghcc |>
+
+: Problem_000.hs |> !ghcc |> 
+: Problem_001.hs |> !ghcc |> 
+: Problem_002.hs |> !ghcc |> 
+: Problem_003.hs | Factorization.hi |> !ghcc |> 
+: Problem_004.hs | Factorization.hi |> !ghcc |> 
+: Problem_005.hs |> !ghcc |> 
+: Problem_006.hs |> !ghcc |> 
+: Problem_007.hs |> !ghcc |> 
 
 : Problem_001.o | Problem_001.hi |> !ghld |>
+: Problem_002.o | Problem_002.hi |> !ghld |>
+: Problem_003.o Factorization.o | Problem_003.hi |> !ghld |> Problem_003.exe
+: Problem_004.o Factorization.o | Problem_004.hi |> !ghld |> Problem_004.exe
+: Problem_005.o | Problem_005.hi |> !ghld |>
+: Problem_006.o | Problem_006.hi |> !ghld |>
+: Problem_007.o | Problem_007.hi |> !ghld |>
+
+: foreach Problem_*.exe |> !run |>
+
